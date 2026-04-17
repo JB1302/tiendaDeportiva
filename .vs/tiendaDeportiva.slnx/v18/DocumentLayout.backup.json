@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\controllers\\dbcontextcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\controllers\\dbcontextcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendadeportiva\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 52,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DbContextController.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\DbContextController.cs",
+              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Controllers\\DbContextController.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\DbContextController.cs",
+              "RelativeToolTip": "tiendaDeportivaAPI\\Controllers\\DbContextController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T02:36:25.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T02:28:27.579Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -234,40 +260,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductosController.cs",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
-              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
-              "RelativeToolTip": "tiendaDeportivaAPI\\Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAsAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T02:15:28.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Site.css",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Content\\Site.css",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Content\\Site.css",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Content\\Site.css",
-              "RelativeToolTip": "tiendaDeportiva\\Content\\Site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-17T02:07:34.417Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "tiendaDeportiva\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T02:04:03.921Z",
+              "Title": "PedidosController.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
+              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
+              "RelativeToolTip": "tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T02:28:28.193Z",
               "EditorCaption": ""
             }
           ]
