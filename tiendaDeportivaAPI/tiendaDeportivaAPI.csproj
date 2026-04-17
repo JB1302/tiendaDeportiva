@@ -295,6 +295,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\PedidoDetalleDto.cs" />
+    <Compile Include="Models\DTO\PedidoListaDto.cs" />
+    <Compile Include="Models\DTO\DetallePedidoDto.cs" />
+    <Compile Include="Models\DTO\ProductoDto.cs" />
     <Compile Include="Models\PedidoRequest.cs" />
     <Compile Include="Models\PedidoItemRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

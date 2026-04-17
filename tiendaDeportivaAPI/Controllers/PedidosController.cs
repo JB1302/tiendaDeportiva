@@ -3,15 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Data.Entity;
 using tiendaDeportiva.Models;
 using tiendaDeportiva.Models.Enum;
 using tiendaDeportivaAPI.Models;
+using tiendaDeportivaAPI.Models.Dto;
+
 namespace tiendaDeportiva.Controllers
 {
     [RoutePrefix("api/pedidos")]
     public class PedidosController : ApiController
     {
         private readonly DBContextController _context = new DBContextController();
+
+        private PedidoListaDto MapPedidoLista(Pedido pedido)
+        {
+            return new PedidoListaDto
+            {
+                Id = pedido.Id,
+                Fecha = pedido.Fecha,
+                IdUsuario = pedido.IdUsuario,
+                MontoTotal = pedido.MontoTotal,
+                Estado = pedido.Estado
+            };
+        }
+
+        private PedidoDetalleDto MapPedidoDetalle(Pedido pedido)
+        {
+            return new PedidoDetalleDto
+            {
+                Id = pedido.Id,
+                Fecha = pedido.Fecha,
+                IdUsuario = pedido.IdUsuario,
+                MontoTotal = pedido.MontoTotal,
+                Estado = pedido.Estado,
+                Detalles = pedido.Detalles != null
+                    ? pedido.Detalles.Select(d => new DetallePedidoDto
+                    {
+                        IdProducto = d.IdProducto,
+                        Cantidad = d.Cantidad,
+                        PrecioUnitario = d.PrecioUnitario,
+                        Producto = d.Producto != null
+                            ? new ProductoDto
+                            {
+                                Id = d.Producto.Id,
+                                Nombre = d.Producto.Nombre
+                            }
+                            : null
+                    }).ToList()
+                    : new List<DetallePedidoDto>()
+            };
+        }
 
         [HttpPost]
         [Route("")]
@@ -59,7 +101,6 @@ namespace tiendaDeportiva.Controllers
                 });
 
                 total += producto.Precio * item.Cantidad;
-
                 producto.Stock -= item.Cantidad;
             }
 
@@ -68,7 +109,11 @@ namespace tiendaDeportiva.Controllers
             _context.Pedido.Add(pedido);
             _context.SaveChanges();
 
-            return Ok(pedido);
+            var pedidoGuardado = _context.Pedido
+                .Include(p => p.Detalles.Select(d => d.Producto))
+                .FirstOrDefault(p => p.Id == pedido.Id);
+
+            return Ok(MapPedidoDetalle(pedidoGuardado));
         }
 
         [HttpGet]
@@ -79,6 +124,8 @@ namespace tiendaDeportiva.Controllers
 
             var pedidos = _context.Pedido
                 .Where(p => p.IdUsuario == userId)
+                .ToList()
+                .Select(MapPedidoLista)
                 .ToList();
 
             return Ok(pedidos);
@@ -88,7 +135,11 @@ namespace tiendaDeportiva.Controllers
         [Route("")]
         public IHttpActionResult GetAll()
         {
-            var pedidos = _context.Pedido.ToList();
+            var pedidos = _context.Pedido
+                .ToList()
+                .Select(MapPedidoLista)
+                .ToList();
+
             return Ok(pedidos);
         }
 
@@ -97,12 +148,13 @@ namespace tiendaDeportiva.Controllers
         public IHttpActionResult GetById(int id)
         {
             var pedido = _context.Pedido
+                .Include(p => p.Detalles.Select(d => d.Producto))
                 .FirstOrDefault(p => p.Id == id);
 
             if (pedido == null)
                 return NotFound();
 
-            return Ok(pedido);
+            return Ok(MapPedidoDetalle(pedido));
         }
 
         [HttpDelete]
@@ -116,10 +168,9 @@ namespace tiendaDeportiva.Controllers
                 return NotFound();
 
             pedido.Estado = EstadoPedido.Completado;
-
             _context.SaveChanges();
 
-            return Ok("Pedido actualizado");
+            return Ok(new { mensaje = "Pedido actualizado" });
         }
     }
 }

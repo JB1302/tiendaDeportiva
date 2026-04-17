@@ -136,6 +136,9 @@
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\CarritoItem.cs" />
     <Compile Include="Models\DetallePedido.cs" />
+    <Compile Include="Models\DTO\ApiErrorDto.cs" />
+    <Compile Include="Models\DTO\PedidoItemRequestDto.cs" />
+    <Compile Include="Models\DTO\PedidoRequestDto.cs" />
     <Compile Include="Models\Enum\Categoria.cs" />
     <Compile Include="Models\Enum\EstadoPedido.cs" />
     <Compile Include="Models\Pedido.cs" />

@@ -79,7 +79,8 @@ else
             <button type="submit" class="btn btn-danger">Vaciar carrito</button>
         }
 
-        @using (Html.BeginForm("ProcesarOrden", "Carrito", FormMethod.Post, new { style = "display:inline-block; margin-left:10px;" }))
+        @using (Html.BeginForm("CrearDesdeCarrito", "Pedidoes", FormMethod.Post, new { style = "display:inline-block; margin-left:10px;" }))
+
         {
             @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-success">Procesar orden</button>

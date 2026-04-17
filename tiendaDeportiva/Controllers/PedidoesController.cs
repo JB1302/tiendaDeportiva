@@ -1,126 +1,181 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+using System.Configuration;
 using System.Linq;
-using System.Net;
-using System.Web;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using tiendaDeportiva.Models;
+using tiendaDeportiva.Models.Dto;
 
 namespace tiendaDeportiva.Controllers
 {
     public class PedidoesController : Controller
     {
-        private DBContextController db = new DBContextController();
+        private const string CarritoSessionKey = "CARRITO";
+
+        private HttpClient CrearCliente()
+        {
+            var apiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"];
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(apiBaseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Ajusta esto al lugar real donde guardas el token
+            var token = Session["Token"] as string;
+
+            if (!string.IsNullOrWhiteSpace(token))
+            {
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            return client;
+        }
+
+        private Carrito ObtenerCarrito()
+        {
+            if (Session[CarritoSessionKey] == null)
+            {
+                Session[CarritoSessionKey] = new Carrito();
+            }
+
+            return (Carrito)Session[CarritoSessionKey];
+        }
+
+        private async Task<string> LeerError(HttpResponseMessage response)
+        {
+            var contenido = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrWhiteSpace(contenido))
+            {
+                return "Ocurrió un error al consumir el API.";
+            }
+
+            try
+            {
+                var apiError = JsonConvert.DeserializeObject<ApiErrorDto>(contenido);
+
+                if (apiError != null && !string.IsNullOrWhiteSpace(apiError.error))
+                {
+                    return apiError.error;
+                }
+            }
+            catch
+            {
+            }
+
+            return contenido;
+        }
 
         // GET: Pedidoes
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Pedido.ToList());
+            using (var client = CrearCliente())
+            {
+                var endpoint = User.IsInRole("Admin")
+                    ? "api/pedidos"
+                    : "api/pedidos/mios";
+
+                var response = await client.GetAsync(endpoint);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    TempData["Error"] = await LeerError(response);
+                    return View(new List<Pedido>());
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+                var pedidos = JsonConvert.DeserializeObject<List<Pedido>>(json) ?? new List<Pedido>();
+
+                return View(pedidos);
+            }
         }
 
         // GET: Pedidoes/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
+            using (var client = CrearCliente())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var response = await client.GetAsync("api/pedidos/" + id);
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return HttpNotFound();
+                }
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    TempData["Error"] = await LeerError(response);
+                    return RedirectToAction("Index");
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+                var pedido = JsonConvert.DeserializeObject<Pedido>(json);
+
+                if (pedido == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(pedido);
             }
-            Pedido pedido = db.Pedido.Find(id);
-            if (pedido == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pedido);
         }
 
-        // GET: Pedidoes/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Pedidoes/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Pedidoes/CrearDesdeCarrito
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fecha,IdUsuario,MontoTotal,Estado")] Pedido pedido)
+        public async Task<ActionResult> CrearDesdeCarrito()
         {
-            if (ModelState.IsValid)
+            var carrito = ObtenerCarrito();
+
+            if (carrito == null || carrito.Items == null || !carrito.Items.Any())
             {
-                db.Pedido.Add(pedido);
-                db.SaveChanges();
+                TempData["Error"] = "El carrito está vacío.";
+                return RedirectToAction("Index", "Carrito");
+            }
+
+            var request = new PedidoRequestDto
+            {
+                Items = carrito.Items.Select(x => new PedidoItemRequestDto
+                {
+                    ProductoId = x.IdProducto,
+                    Cantidad = x.Cantidad
+                }).ToList()
+            };
+
+            using (var client = CrearCliente())
+            {
+                var jsonRequest = JsonConvert.SerializeObject(request);
+
+                var content = new StringContent(
+                    jsonRequest,
+                    Encoding.UTF8,
+                    "application/json");
+
+                var response = await client.PostAsync("api/pedidos", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    TempData["Error"] = await LeerError(response);
+                    return RedirectToAction("Index", "Carrito");
+                }
+
+                Session[CarritoSessionKey] = new Carrito();
+                TempData["Mensaje"] = "Pedido creado correctamente.";
+
                 return RedirectToAction("Index");
             }
-
-            return View(pedido);
-        }
-
-        // GET: Pedidoes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pedido pedido = db.Pedido.Find(id);
-            if (pedido == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pedido);
-        }
-
-        // POST: Pedidoes/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Fecha,IdUsuario,MontoTotal,Estado")] Pedido pedido)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(pedido).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(pedido);
-        }
-
-        // GET: Pedidoes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pedido pedido = db.Pedido.Find(id);
-            if (pedido == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pedido);
-        }
-
-        // POST: Pedidoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Pedido pedido = db.Pedido.Find(id);
-            db.Pedido.Remove(pedido);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
             base.Dispose(disposing);
         }
     }
