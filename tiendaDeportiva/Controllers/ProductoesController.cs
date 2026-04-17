@@ -42,7 +42,6 @@ namespace tiendaDeportiva.Controllers
         {
             using (var client = CrearCliente())
             {
-                // Usa "api/productos/activos" si quieres mostrar solo los activos
                 var response = await client.GetAsync("api/productos");
 
                 if (!response.IsSuccessStatusCode)
