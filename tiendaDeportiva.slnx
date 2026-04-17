@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="tiendaDeportiva/tiendaDeportiva.csproj" />
-  <Project Path="tiendaDeportivaAPI/tiendaDeportivaAPI.csproj" />
+  <Project Path="tiendaDeportiva/tiendaDeportiva.csproj" Id="88a47556-7bb4-4675-aa23-cd13b88a23c5" />
+  <Project Path="tiendaDeportivaAPI/tiendaDeportivaAPI.csproj" Id="5ba974d8-da48-44fc-ac34-44462eacba78" />
 </Solution>
