@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="tiendaDeportiva/tiendaDeportiva.csproj" />
+  <Project Path="tiendaDeportivaAPI/tiendaDeportivaAPI.csproj" />
+</Solution>
