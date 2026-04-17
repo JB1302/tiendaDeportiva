@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\controllers\\productoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\controllers\\productoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -227,14 +227,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PedidosController.cs",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
-              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
-              "RelativeToolTip": "tiendaDeportivaAPI\\Controllers\\PedidosController.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAiwKoAAAAjAAAAAAAAAA==",
+              "Title": "ProductoesController.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Controllers\\ProductoesController.cs",
+              "RelativeDocumentMoniker": "tiendaDeportiva\\Controllers\\ProductoesController.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Controllers\\ProductoesController.cs",
+              "RelativeToolTip": "tiendaDeportiva\\Controllers\\ProductoesController.cs",
+              "ViewState": "AgIAAOIAAAAAAAAAAAA0wOMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T04:36:46.039Z",
+              "WhenOpened": "2026-04-17T04:50:02.14Z",
               "EditorCaption": ""
             }
           ]

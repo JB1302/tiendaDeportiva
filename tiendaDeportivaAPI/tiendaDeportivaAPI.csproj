@@ -298,6 +298,7 @@
     <Compile Include="Models\DTO\PedidoDetalleDto.cs" />
     <Compile Include="Models\DTO\PedidoListaDto.cs" />
     <Compile Include="Models\DTO\DetallePedidoDto.cs" />
+    <Compile Include="Models\DTO\ProductoUpsertDto.cs" />
     <Compile Include="Models\DTO\ProductoDto.cs" />
     <Compile Include="Models\PedidoRequest.cs" />
     <Compile Include="Models\PedidoItemRequest.cs" />
