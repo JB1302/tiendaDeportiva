@@ -45,8 +45,6 @@ namespace tiendaDeportiva.Controllers
         }
 
         // POST: DetallePedidoes/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,IdPedido,IdProducto,Cantidad,PrecioUnitario")] DetallePedido detallePedido)
@@ -81,8 +79,6 @@ namespace tiendaDeportiva.Controllers
         }
 
         // POST: DetallePedidoes/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,IdPedido,IdProducto,Cantidad,PrecioUnitario")] DetallePedido detallePedido)
