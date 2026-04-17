@@ -1,66 +1,55 @@
 ﻿@model tiendaDeportiva.Models.Producto
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle de producto";
 }
 
-<h2>Details</h2>
+<div class="container mt-4">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            <h2 style="margin-top: 0;">Detalle de producto</h2>
+            <p class="text-muted">Consulta la información registrada del producto.</p>
+        </div>
+    </div>
 
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Información del producto</strong>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal" style="margin-bottom: 0;">
+                <dt>@Html.DisplayNameFor(model => model.Nombre)</dt>
+                <dd>@Html.DisplayFor(model => model.Nombre)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                <dt>@Html.DisplayNameFor(model => model.Descripcion)</dt>
+                <dd>@Html.DisplayFor(model => model.Descripcion)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+                <dt>@Html.DisplayNameFor(model => model.Precio)</dt>
+                <dd>@Model.Precio.ToString("C")</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+                <dt>@Html.DisplayNameFor(model => model.Stock)</dt>
+                <dd>@Html.DisplayFor(model => model.Stock)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
+                <dt>@Html.DisplayNameFor(model => model.Categoria)</dt>
+                <dd>@Model.Categoria.ToString()</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
+                <dt>@Html.DisplayNameFor(model => model.Activo)</dt>
+                <dd>
+                    @if (Model.Activo)
+                    {
+                        <span class="label label-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="label label-default">Inactivo</span>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
-
-    </dl>
+    <div style="margin-top: 20px;">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-default" })
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

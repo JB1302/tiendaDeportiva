@@ -6,113 +6,102 @@
 }
 
 <div class="container mt-4">
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-        <div>
-            <h2 class="mb-1">Productos</h2>
-            <p class="text-muted mb-0">Administra el catálogo y agrega productos al carrito.</p>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h2 style="margin-top: 0;">Productos</h2>
+            <p class="text-muted">Administra el catálogo de productos disponibles en el sistema.</p>
         </div>
-        <div class="mt-2 mt-md-0">
-            @Html.ActionLink("Nuevo producto", "Create", null, new { @class = "btn btn-primary mr-2" })
+        <div class="col-md-4 text-right">
+            @Html.ActionLink("Nuevo producto", "Create", null, new { @class = "btn btn-primary" })
             @Html.ActionLink("Ver carrito", "Index", "Carrito", null, new { @class = "btn btn-success" })
         </div>
     </div>
 
     @if (TempData["Mensaje"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success">
             @TempData["Mensaje"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     }
 
     @if (TempData["Error"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger">
             @TempData["Error"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     }
 
-    <div class="card shadow-sm border-0">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover table-striped mb-0">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
-                            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
-                            <th>@Html.DisplayNameFor(model => model.Precio)</th>
-                            <th>@Html.DisplayNameFor(model => model.Stock)</th>
-                            <th>@Html.DisplayNameFor(model => model.Categoria)</th>
-                            <th>@Html.DisplayNameFor(model => model.Activo)</th>
-                            <th class="text-center" style="width: 290px;">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null && Model.Any())
-                        {
-                            foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="font-weight-bold">@Html.DisplayFor(modelItem => item.Nombre)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                                    <td>@item.Precio.ToString("C")</td>
-                                    <td>
-                                        @if (item.Stock > 0)
-                                        {
-                                            <span class="badge badge-info px-3 py-2">@item.Stock</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge badge-danger px-3 py-2">0</span>
-                                        }
-                                    </td>
-                                    <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
-                                    <td>
-                                        @if (item.Activo)
-                                        {
-                                            <span class="badge badge-success px-3 py-2">Sí</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge badge-secondary px-3 py-2">No</span>
-                                        }
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-warning mr-1" })
-                                        @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info mr-1 text-white" })
-                                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger mr-1" })
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Listado de productos</strong>
+        </div>
 
-                                        @if (item.Activo && item.Stock > 0)
-                                        {
-                                            using (Html.BeginForm("Agregar", "Carrito", FormMethod.Post, new { @class = "d-inline-block" }))
-                                            {
-                                                @Html.Hidden("idProducto", item.Id)
-                                                @Html.Hidden("cantidad", 1)
-                                                <button type="submit" class="btn btn-sm btn-success">Agregar</button>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <span class="badge badge-light border text-danger">Sin stock</span>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        }
-                        else
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(model => model.Precio)</th>
+                        <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                        <th>@Html.DisplayNameFor(model => model.Categoria)</th>
+                        <th>@Html.DisplayNameFor(model => model.Activo)</th>
+                        <th class="text-center" style="width: 280px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
                         {
                             <tr>
-                                <td colspan="7" class="text-center py-4 text-muted">No hay productos registrados.</td>
+                                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                                <td>@item.Precio.ToString("C")</td>
+                                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                <td>@item.Categoria.ToString()</td>
+                                <td>
+                                    @if (item.Activo)
+                                    {
+                                        <span class="label label-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-default">Inactivo</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-warning" })
+                                    @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-info" })
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-danger" })
+
+                                    @if (item.Activo && item.Stock > 0)
+                                    {
+                                        using (Html.BeginForm("Agregar", "Carrito", FormMethod.Post, new { style = "display:inline-block; margin-left:4px;" }))
+                                        {
+                                            @Html.Hidden("idProducto", item.Id)
+                                            @Html.Hidden("cantidad", 1)
+                                            <button type="submit" class="btn btn-xs btn-success">Agregar</button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger" style="margin-left: 5px;">Sin stock</span>
+                                    }
+                                </td>
                             </tr>
                         }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted" style="padding: 20px;">
+                                No hay productos registrados.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
