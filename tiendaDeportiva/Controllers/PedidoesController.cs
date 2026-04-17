@@ -27,7 +27,6 @@ namespace tiendaDeportiva.Controllers
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            // Ajusta esto al lugar real donde guardas el token
             var token = Session["Token"] as string;
 
             if (!string.IsNullOrWhiteSpace(token))
