@@ -1,0 +1,2 @@
+F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportivaAPI\obj\Debug\tiendaDeportivaAPI.csproj.AssemblyReference.cache
+F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportivaAPI\obj\Debug\tiendaDeportivaAPI.csproj.CoreCompileInputs.cache

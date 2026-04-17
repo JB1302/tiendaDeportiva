@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\carrito\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\carrito\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\detallepedidoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\detallepedidoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\productoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\productoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\views\\pedidoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\views\\pedidoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 56,
+          "SelectedChildIndex": 53,
           "Children": [
             {
               "$type": "Bookmark",
@@ -248,61 +236,22 @@
               "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\Carrito\\Index.cshtml",
               "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Carrito\\Index.cshtml",
               "RelativeToolTip": "tiendaDeportiva\\Views\\Carrito\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T03:23:15.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\DetallePedidoes\\Index.cshtml",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\DetallePedidoes\\Index.cshtml",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\DetallePedidoes\\Index.cshtml",
-              "RelativeToolTip": "tiendaDeportiva\\Views\\DetallePedidoes\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T03:22:56.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Productoes\\Index.cshtml",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\Productoes\\Index.cshtml",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Productoes\\Index.cshtml",
-              "RelativeToolTip": "tiendaDeportiva\\Views\\Productoes\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAABkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T03:22:39.891Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Pedidoes\\Index.cshtml",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\Pedidoes\\Index.cshtml",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Pedidoes\\Index.cshtml",
-              "RelativeToolTip": "tiendaDeportiva\\Views\\Pedidoes\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T03:22:30.49Z",
+              "WhenOpened": "2026-04-17T03:43:17.495Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "tiendaDeportiva\\Views\\Home\\Index.cshtml",
-              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "tiendaDeportiva\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAiwD0AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T03:22:06.339Z",
+              "Title": "CarritoController.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Controllers\\CarritoController.cs",
+              "RelativeDocumentMoniker": "tiendaDeportiva\\Controllers\\CarritoController.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Controllers\\CarritoController.cs",
+              "RelativeToolTip": "tiendaDeportiva\\Controllers\\CarritoController.cs",
+              "ViewState": "AgIAAMQAAAAAAAAAAAASwM0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T03:42:49.81Z",
               "EditorCaption": ""
             }
           ]
