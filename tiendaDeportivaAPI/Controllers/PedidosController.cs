@@ -1,197 +1,125 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
-using System.Web.Mvc;
+using tiendaDeportiva.Controllers;
+using tiendaDeportiva.Models;
+using tiendaDeportiva.Models.Enum;
 using tiendaDeportivaAPI.Models;
 
-namespace TiendaDeportiva.API.Controllers
-
+namespace tiendaDeportiva.Controllers
 {
     [RoutePrefix("api/pedidos")]
-
     public class PedidosController : ApiController
-
     {
-
-        private AppDbContext _context = new AppDbContext();
-
-
-        // POST api/pedidos        [HttpPost, Route("")]
-
-        public IHttpActionResult Post([FromBody] CrearPedidoDto dto)
-
+        private readonly DBContextController _context = new DBContextController();
+        [HttpPost]
+        [Route("")]
+        public IHttpActionResult CrearPedido(PedidoRequest request)
         {
-
-            if (dto == null || dto.Items == null || !dto.Items.Any())
-
-                return BadRequest("Debe incluir un producto");
-
-
-            if (string.IsNullOrWhiteSpace(dto.IdUsuario))
-
-                return BadRequest("El ID es obligatorio");
-
-
-            decimal montoTotal = 0;
+            if (request == null || request.Items == null || !request.Items.Any())
+                return BadRequest("Pedido vacío");
 
             var pedido = new Pedido
             {
-
-                IdUsuario = dto.IdUsuario,
-
                 Fecha = DateTime.Now,
-
-                Estado = "Pendiente"
+                Estado = EstadoPedido.Pendiente,
+                IdUsuario = "demo-user",
+                Detalles = new List<DetallePedido>()
             };
 
+            decimal total = 0;
 
-            foreach (var item in dto.Items)
-
+            foreach (var item in request.Items)
             {
+                var producto = _context.Producto
+                    .FirstOrDefault(p => p.Id == item.ProductoId);
 
-                if (item.Cantidad <= 0)
-
-                    return BadRequest($"Cantidad invalida para producto {item.IdProducto}.");
-
-
-                var producto = _db.Productos.Find(item.IdProducto);
-
-                if (producto == null || !producto.Activo)
-
-                    return BadRequest($"Producto {item.IdProducto} no existe o esta inactivo");
-
+                if (producto == null)
+                {
+                    return Content(HttpStatusCode.BadRequest, new
+                    {
+                        error = $"El producto {item.ProductoId} no existe"
+                    });
+                }
 
                 if (producto.Stock < item.Cantidad)
-
-                    return BadRequest(
-
-                        $"No hay stock para '{producto.Nombre}'. " +
-
-                        $"Disponible: {producto.Stock}.");
-
-
-                producto.Stock -= item.Cantidad;
-
+                {
+                    return Content(HttpStatusCode.BadRequest, new
+                    {
+                        error = $"Stock insuficiente"
+                    });
+                }
 
                 pedido.Detalles.Add(new DetallePedido
                 {
-
-                    IdProducto = item.IdProducto,
-
+                    IdProducto = producto.Id,
                     Cantidad = item.Cantidad,
-
                     PrecioUnitario = producto.Precio
-
                 });
 
+                total += producto.Precio * item.Cantidad;
 
-                montoTotal += producto.Precio * item.Cantidad;
-
+                producto.Stock -= item.Cantidad;
             }
 
+            pedido.MontoTotal = total;
 
-            pedido.MontoTotal = montoTotal;
+            _context.Pedido.Add(pedido);
+            _context.SaveChanges();
 
-            _db.Pedidos.Add(pedido);
-
-            _db.SaveChanges();
-
-
-            return Ok(new { pedido.Id, pedido.Fecha, pedido.MontoTotal, pedido.Estado });
-
+            return Ok(pedido);
         }
 
-
-        // GET api/pedidos/        [HttpGet, Route("mios")]
-
-        public IHttpActionResult MisPedidos(string usuario)
-
+        [HttpGet]
+        [Route("mios")]
+        public IHttpActionResult MisPedidos()
         {
+            string userId = "demo-user";
 
-            if (string.IsNullOrWhiteSpace(usuario))
-
-                return BadRequest("El parametro usuario es obligatorio");
-
-
-            var pedidos = _db.Pedidos
-
-                .Where(p => p.IdUsuario == usuario)
-
-                .Select(p => new {
-
-                    p.Id,
-
-                    p.Fecha,
-
-                    p.MontoTotal,
-
-                    p.Estado,
-
-                    Detalles = p.Detalles.Select(d => new {
-
-                        d.Cantidad,
-
-                        d.PrecioUnitario,
-
-                        Producto = d.Producto.Nombre
-
-                    })
-
-                })
-
-                .OrderByDescending(p => p.Fecha)
-
+            var pedidos = _context.Pedido
+                .Where(p => p.IdUsuario == userId)
                 .ToList();
 
-
             return Ok(pedidos);
-
         }
-
-
-        // GET api/pedidos         [HttpGet, Route("")]
-
+        [HttpGet]
+        [Route("")]
         public IHttpActionResult GetAll()
-
         {
-
-            var pedidos = _db.Pedidos
-
-                .Select(p => new {
-
-                    p.Id,
-
-                    p.Fecha,
-
-                    p.MontoTotal,
-
-                    p.Estado,
-
-                    p.IdUsuario,
-
-                    CantidadItems = p.Detalles.Count()
-
-                })
-
-                .OrderByDescending(p => p.Fecha)
-
-                .ToList();
-
-
+            var pedidos = _context.Pedido.ToList();
             return Ok(pedidos);
-
         }
 
-        protected override void Dispose(bool disposing)
-
+        [HttpGet]
+        [Route("{id:int}")]
+        public IHttpActionResult GetById(int id)
         {
+            var pedido = _context.Pedido
+                .FirstOrDefault(p => p.Id == id);
 
-            if (disposing) _db.Dispose();
+            if (pedido == null)
+                return NotFound();
 
-            base.Dispose(disposing);
-
+            return Ok(pedido);
         }
 
-    }
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IHttpActionResult Delete(int id)
+        {
+            var pedido = _context.Pedido
+                .FirstOrDefault(p => p.Id == id);
 
+            if (pedido == null)
+                return NotFound();
+
+            pedido.Estado = EstadoPedido.Completado;
+
+            _context.SaveChanges();
+
+            return Ok("Pedido actualizado");
+        }
+    }
 }

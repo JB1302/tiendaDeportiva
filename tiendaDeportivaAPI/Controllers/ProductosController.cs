@@ -2,59 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using tiendaDeportivaAPI.Models;
+using tiendaDeportiva.Controllers;
+using tiendaDeportiva.Models;
 
 namespace Productos.API.Controllers
 {
     public class ProductosController : ApiController
     {
-        private AppDbContext _context = new AppDbContext();
-
-        // GET: api/productos
+        private readonly DBContextController _context = new DBContextController();
         [HttpGet]
-        [Route("api/productos")]
-        public IHttpActionResult Get(
-            string categoria = null,
-            decimal? precioMin = null,
-            decimal? precioMax = null,
-            int pagina = 1,
-            int tamanioPagina = 10)
+        public IHttpActionResult Get()
         {
-            var query = _context.Productos.Where(p => p.Activo);
-
-            if (!string.IsNullOrEmpty(categoria))
-                query = query.Where(p => p.Categoria == categoria);
-
-            if (precioMin.HasValue)
-                query = query.Where(p => p.Precio >= precioMin.Value);
-
-            if (precioMax.HasValue)
-                query = query.Where(p => p.Precio <= precioMax.Value);
-
-            var total = query.Count();
-
-            var data = query
-                .OrderBy(p => p.Id)
-                .Skip((pagina - 1) * tamanioPagina)
-                .Take(tamanioPagina)
+            var productos = _context.Producto
+                .Where(p => p.Activo)
                 .ToList();
 
-            return Ok(new
-            {
-                total,
-                pagina,
-                tamanioPagina,
-                data
-            });
+            return Ok(productos);
         }
 
-        // GET: api/productos/1
         [HttpGet]
-        [Route("api/productos/{id}")]
-        public IHttpActionResult Get(int id)
+        [Route("{id:int}")]
+        public IHttpActionResult GetById(int id)
         {
-            var producto = _context.Productos
-                .FirstOrDefault(p => p.Id == id && p.Activo);
+            var producto = _context.Producto
+                .FirstOrDefault(p => p.Id == id);
 
             if (producto == null)
                 return NotFound();
@@ -62,100 +33,57 @@ namespace Productos.API.Controllers
             return Ok(producto);
         }
 
-        // POST: api/productos
         [HttpPost]
-        [Route("api/productos")]
-        public IHttpActionResult Post([FromBody] Producto producto)
+        public IHttpActionResult Post(Producto producto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (producto.Precio <= 0)
+                return BadRequest("Precio inválido");
 
-            var errores = new List<string>();
-            var categoriasValidas = new[] { "Futbol", "Basquetbol", "Natacion", "Tenis" };
-
-            if (producto == null)
-                errores.Add("producto requerido");
-
-            if (string.IsNullOrWhiteSpace(producto?.Nombre))
-                errores.Add("nombre obligatorio");
-
-            if (producto?.Precio <= 0)
-                errores.Add("precio mayor que 0");
-
-            if (producto?.Stock < 0)
-                errores.Add("stock mayor o igual a 0");
-
-            if (!categoriasValidas.Contains(producto?.Categoria))
-                errores.Add("categoria invalida");
-
-            if (errores.Any())
-                return Content(System.Net.HttpStatusCode.BadRequest, new { errores });
+            if (producto.Stock < 0)
+                return BadRequest("Stock inválido");
 
             producto.Activo = true;
 
-            _context.Productos.Add(producto);
+            _context.Producto.Add(producto);
             _context.SaveChanges();
 
             return Ok(producto);
         }
 
-        // PUT: api/productos/1
         [HttpPut]
-        [Route("api/productos/{id}")]
-        public IHttpActionResult Put(int id, [FromBody] Producto producto)
+        [Route("{id:int}")]
+        public IHttpActionResult Put(int id, Producto input)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var existe = _context.Productos.FirstOrDefault(p => p.Id == id);
-
-            if (existe == null)
-                return NotFound();
-
-            var errores = new List<string>();
-            var categoriasValidas = new[] { "Futbol", "Basquetbol", "Natacion", "Tenis" };
-
-            if (producto.Precio <= 0)
-                errores.Add("precio mayor que 0");
-
-            if (producto.Stock < 0)
-                errores.Add("stock mayor o igual a 0");
-
-            if (!categoriasValidas.Contains(producto.Categoria))
-                errores.Add("categoria invalida");
-
-            if (errores.Any())
-                return Content(System.Net.HttpStatusCode.BadRequest, new { errores });
-
-            existe.Nombre = producto.Nombre;
-            existe.Descripcion = producto.Descripcion;
-            existe.Precio = producto.Precio;
-            existe.Stock = producto.Stock;
-            existe.Categoria = producto.Categoria;
-
-            _context.SaveChanges();
-
-            return Ok(existe);
-        }
-
-        // DELETE: api/productos/1
-        [HttpDelete]
-        [Route("api/productos/{id}")]
-        public IHttpActionResult Delete(int id, bool logico = true)
-        {
-            var producto = _context.Productos.FirstOrDefault(p => p.Id == id);
+            var producto = _context.Producto.FirstOrDefault(p => p.Id == id);
 
             if (producto == null)
                 return NotFound();
 
-            if (logico)
-            {
-                producto.Activo = false;
-            }
+            producto.Nombre = input.Nombre;
+            producto.Descripcion = input.Descripcion;
+            producto.Precio = input.Precio;
+            producto.Stock = input.Stock;
+            producto.Categoria = input.Categoria;
 
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(producto);
         }
-    }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IHttpActionResult Delete(int id)
+        {
+            var producto = _context.Producto.FirstOrDefault(p => p.Id == id);
+
+            if (producto == null)
+                return NotFound();
+
+            producto.Activo = false;
+
+            _context.SaveChanges();
+
+            return Ok("Producto eliminado");
+        }
+    };
 }
