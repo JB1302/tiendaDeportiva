@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
-using tiendaDeportiva.Controllers;
 using tiendaDeportiva.Models;
 using tiendaDeportiva.Models.Enum;
 using tiendaDeportivaAPI.Models;
@@ -14,6 +13,7 @@ namespace tiendaDeportiva.Controllers
     public class PedidosController : ApiController
     {
         private readonly DBContextController _context = new DBContextController();
+
         [HttpPost]
         [Route("")]
         public IHttpActionResult CrearPedido(PedidoRequest request)
@@ -48,7 +48,7 @@ namespace tiendaDeportiva.Controllers
                 {
                     return Content(HttpStatusCode.BadRequest, new
                     {
-                        error = $"Stock insuficiente"
+                        error = $"Stock insuficiente para {producto.Nombre}"
                     });
                 }
 
@@ -84,6 +84,7 @@ namespace tiendaDeportiva.Controllers
 
             return Ok(pedidos);
         }
+
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAll()
