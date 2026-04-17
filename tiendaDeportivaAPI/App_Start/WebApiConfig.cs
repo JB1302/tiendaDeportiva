@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Cors;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
-namespace tiendaDeportivaAPI
+namespace PracticaProgramada.Api
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
-            // Configuración y servicios de Web API
+            var cors = new System.Web.Http.Cors.EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
-            // Rutas de Web API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/id",
                 defaults: new { id = RouteParameter.Optional }
-            );
+                );
         }
     }
 }

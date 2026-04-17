@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportivaapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{5BA974D8-DA48-44FC-AC34-44462EACBA78}|tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj|solutionrelative:tiendadeportivaapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|f:\\github\\projects\\csharp\\practicaprogramadafinal\\tiendadeportiva\\tiendadeportiva\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{88A47556-7BB4-4675-AA23-CD13B88A23C5}|tiendaDeportiva\\tiendaDeportiva.csproj|solutionrelative:tiendadeportiva\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -227,6 +235,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WebApiConfig.cs",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\App_Start\\WebApiConfig.cs",
+              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\App_Start\\WebApiConfig.cs",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\App_Start\\WebApiConfig.cs",
+              "RelativeToolTip": "tiendaDeportivaAPI\\App_Start\\WebApiConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T01:28:26.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Web.config",
+              "RelativeDocumentMoniker": "tiendaDeportivaAPI\\Web.config",
+              "ToolTip": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportivaAPI\\Web.config",
+              "RelativeToolTip": "tiendaDeportivaAPI\\Web.config",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-04-17T01:28:16.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Pedido.cs",
               "DocumentMoniker": "F:\\GitHub\\Projects\\Csharp\\PracticaProgramadaFinal\\tiendaDeportiva\\tiendaDeportiva\\Models\\Pedido.cs",
               "RelativeDocumentMoniker": "tiendaDeportiva\\Models\\Pedido.cs",
