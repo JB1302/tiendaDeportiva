@@ -5,6 +5,10 @@
       {
         "Path": "tiendaDeportiva\\tiendaDeportiva.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "tiendaDeportivaAPI\\tiendaDeportivaAPI.csproj",
+        "Action": "Start"
       }
     ]
   }
