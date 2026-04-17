@@ -70,3 +70,5 @@ F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiv
 F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiva\obj\Debug\tiendaDe.F6DCA83F.Up2Date
 F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiva\obj\Debug\tiendaDeportiva.dll
 F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiva\obj\Debug\tiendaDeportiva.pdb
+F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiva\obj\Debug\tiendaDeportiva.Migrations.inicial.resources
+F:\GitHub\Projects\Csharp\PracticaProgramadaFinal\tiendaDeportiva\tiendaDeportiva\obj\Debug\tiendaDeportiva.csproj.GenerateResource.cache
