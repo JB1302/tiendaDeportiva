@@ -1,51 +1,79 @@
-﻿@model IEnumerable<tiendaDeportiva.Models.Pedido>
+﻿@using System.Linq
+@using tiendaDeportiva.Models.Enum
+@model IEnumerable<tiendaDeportiva.Models.Pedido>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pedidos";
 }
 
-<h2>Index</h2>
+<div class="container mt-4">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h2 style="margin-top: 0;">Pedidos</h2>
+            <p class="text-muted">Administra y consulta los pedidos registrados en el sistema.</p>
+        </div>
+        <div class="col-md-4 text-right">
+            @Html.ActionLink("Nuevo pedido", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MontoTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th></th>
-    </tr>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Listado de pedidos</strong>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MontoTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Fecha)</th>
+                        <th>@Html.DisplayNameFor(model => model.IdUsuario)</th>
+                        <th>@Html.DisplayNameFor(model => model.MontoTotal)</th>
+                        <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                        <th class="text-center" style="width: 220px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
+                                <td>@item.MontoTotal.ToString("C")</td>
+                                <td>
+                                    @if (item.Estado == EstadoPedido.Pendiente)
+                                    {
+                                        <span class="label label-warning">Pendiente</span>
+                                    }
+                                    else if (item.Estado == EstadoPedido.Completado)
+                                    {
+                                        <span class="label label-success">Completado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-default">@item.Estado.ToString()</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-warning" })
+                                    @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-info" })
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted" style="padding: 20px;">
+                                No hay pedidos registrados.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

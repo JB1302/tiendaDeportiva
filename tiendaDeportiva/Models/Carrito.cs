@@ -1,24 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace tiendaDeportiva.Models
 {
-    public class CarritoItem
+    public class Carrito
     {
-        public int IdProducto { get; set; }
+        public List<CarritoItem> Items { get; set; } = new List<CarritoItem>();
 
-        [Display(Name = "Producto")]
-        public string Nombre { get; set; }
-
-        public decimal Precio { get; set; }
-
-        [Display(Name = "Cantidad")]
-        public int Cantidad { get; set; }
-
-        public int StockDisponible { get; set; }
-
-        public decimal Subtotal
+        public decimal Total
         {
-            get { return Precio * Cantidad; }
+            get { return Items.Sum(x => x.Subtotal); }
+        }
+
+        public int CantidadTotal
+        {
+            get { return Items.Sum(x => x.Cantidad); }
         }
     }
 }

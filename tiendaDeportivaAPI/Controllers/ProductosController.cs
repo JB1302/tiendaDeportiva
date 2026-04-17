@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using tiendaDeportivaAPI.Models;
 
 namespace Productos.API.Controllers
 {
-    [RoutePrefix("api/productos")]
     public class ProductosController : ApiController
     {
-        private readonly AppDbContext _context = new AppDbContext();
+        private AppDbContext _context = new AppDbContext();
 
         // GET: api/productos
         [HttpGet]
-        [Route("")]
+        [Route("api/productos")]
         public IHttpActionResult Get(
             string categoria = null,
             decimal? precioMin = null,
@@ -22,12 +20,9 @@ namespace Productos.API.Controllers
             int pagina = 1,
             int tamanioPagina = 10)
         {
-            if (pagina < 1) pagina = 1;
-            if (tamanioPagina < 1) tamanioPagina = 10;
+            var query = _context.Productos.Where(p => p.Activo);
 
-            IQueryable<Producto> query = _context.Productos.Where(p => p.Activo);
-
-            if (!string.IsNullOrWhiteSpace(categoria))
+            if (!string.IsNullOrEmpty(categoria))
                 query = query.Where(p => p.Categoria == categoria);
 
             if (precioMin.HasValue)
@@ -55,7 +50,7 @@ namespace Productos.API.Controllers
 
         // GET: api/productos/1
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("api/productos/{id}")]
         public IHttpActionResult Get(int id)
         {
             var producto = _context.Productos
@@ -69,28 +64,28 @@ namespace Productos.API.Controllers
 
         // POST: api/productos
         [HttpPost]
-        [Route("")]
+        [Route("api/productos")]
         public IHttpActionResult Post([FromBody] Producto producto)
         {
-            if (producto == null)
-                return BadRequest("El producto es requerido.");
-
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var errores = new List<string>();
             var categoriasValidas = new[] { "Futbol", "Basquetbol", "Natacion", "Tenis" };
 
-            if (string.IsNullOrWhiteSpace(producto.Nombre))
+            if (producto == null)
+                errores.Add("producto requerido");
+
+            if (string.IsNullOrWhiteSpace(producto?.Nombre))
                 errores.Add("nombre obligatorio");
 
-            if (producto.Precio <= 0)
+            if (producto?.Precio <= 0)
                 errores.Add("precio mayor que 0");
 
-            if (producto.Stock < 0)
+            if (producto?.Stock < 0)
                 errores.Add("stock mayor o igual a 0");
 
-            if (string.IsNullOrWhiteSpace(producto.Categoria) || !categoriasValidas.Contains(producto.Categoria))
+            if (!categoriasValidas.Contains(producto?.Categoria))
                 errores.Add("categoria invalida");
 
             if (errores.Any())
@@ -101,35 +96,14 @@ namespace Productos.API.Controllers
             _context.Productos.Add(producto);
             _context.SaveChanges();
 
-            return CreatedAtRoute(
-                "GetProductoPorId",
-                new { id = producto.Id },
-                producto
-            );
-        }
-
-        // GET por id con nombre de ruta
-        [HttpGet]
-        [Route("{id:int}", Name = "GetProductoPorId")]
-        public IHttpActionResult GetProductoPorId(int id)
-        {
-            var producto = _context.Productos
-                .FirstOrDefault(p => p.Id == id && p.Activo);
-
-            if (producto == null)
-                return NotFound();
-
             return Ok(producto);
         }
 
         // PUT: api/productos/1
         [HttpPut]
-        [Route("{id:int}")]
+        [Route("api/productos/{id}")]
         public IHttpActionResult Put(int id, [FromBody] Producto producto)
         {
-            if (producto == null)
-                return BadRequest("El producto es requerido.");
-
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -141,16 +115,13 @@ namespace Productos.API.Controllers
             var errores = new List<string>();
             var categoriasValidas = new[] { "Futbol", "Basquetbol", "Natacion", "Tenis" };
 
-            if (string.IsNullOrWhiteSpace(producto.Nombre))
-                errores.Add("nombre obligatorio");
-
             if (producto.Precio <= 0)
                 errores.Add("precio mayor que 0");
 
             if (producto.Stock < 0)
                 errores.Add("stock mayor o igual a 0");
 
-            if (string.IsNullOrWhiteSpace(producto.Categoria) || !categoriasValidas.Contains(producto.Categoria))
+            if (!categoriasValidas.Contains(producto.Categoria))
                 errores.Add("categoria invalida");
 
             if (errores.Any())
@@ -169,7 +140,7 @@ namespace Productos.API.Controllers
 
         // DELETE: api/productos/1
         [HttpDelete]
-        [Route("{id:int}")]
+        [Route("api/productos/{id}")]
         public IHttpActionResult Delete(int id, bool logico = true)
         {
             var producto = _context.Productos.FirstOrDefault(p => p.Id == id);
@@ -181,25 +152,10 @@ namespace Productos.API.Controllers
             {
                 producto.Activo = false;
             }
-            else
-            {
-                _context.Productos.Remove(producto);
-            }
 
             _context.SaveChanges();
 
-            return Ok(new
-            {
-                mensaje = logico ? "Producto eliminado logicamente." : "Producto eliminado fisicamente."
-            });
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-                _context.Dispose();
-
-            base.Dispose(disposing);
+            return Ok();
         }
     }
 }
