@@ -9,9 +9,18 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+=======
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.security.Principal;
+import com.Pawtify.pawtify.service.CarritoService;
+import java.util.List; 
+import com.Pawtify.pawtify.domain.CarritoItem;
+>>>>>>> master
 
 
 @Controller
@@ -21,6 +30,10 @@ public class ProductoController {
     
     @Autowired
     private ProductoService productoService;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> master
 
     @GetMapping("/listado")
     
@@ -33,6 +46,12 @@ public class ProductoController {
         return "/producto/listado";
 
     }
+<<<<<<< HEAD
+=======
+        
+     
+
+>>>>>>> master
      
     
        /* ESTO ES PARA EL EVENTUAL FILTRO
@@ -87,6 +106,46 @@ public class ProductoController {
     }
         
         
+<<<<<<< HEAD
         
+=======
+        @Autowired
+private CarritoService carritoService;
+
+@GetMapping("/carrito")
+public String verCarrito(Model model, Principal principal) {
+    try {
+        // 1. Obtener items del carrito
+        List<CarritoItem> items = carritoService.obtenerItems(principal.getName());
+        
+        // 2. Calcular total
+        double total = items.stream()
+                         .mapToDouble(item -> item.getProducto().getPrecio() * item.getCantidad())
+                         .sum();
+        
+        // 3. Pasar datos a la vista
+        model.addAttribute("carritoItems", items);
+        model.addAttribute("total", total);
+        
+        return "/Producto/carrito"; // Asegúrate que coincida con mayúsculas
+        
+    } catch (Exception e) {
+        model.addAttribute("error", "Error al cargar el carrito");
+        return "/Producto/carrito";
+    }
+}
+
+@PostMapping("/carrito/agregar/{id}")
+public String agregarAlCarrito(
+    @PathVariable Long id,
+    @RequestParam(defaultValue = "1") int cantidad,
+    Principal principal,
+    RedirectAttributes redirect
+) {
+    carritoService.agregarProducto(id, cantidad, principal.getName());
+    redirect.addFlashAttribute("success", "Producto agregado al carrito");
+    return "redirect:/producto/listado";
+}
+>>>>>>> master
         
 }

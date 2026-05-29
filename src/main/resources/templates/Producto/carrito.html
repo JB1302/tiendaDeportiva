@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"><
+
+<body class="bg-light">
+    <header th:replace="~{layout/plantilla :: header}"></header>
+    
+    <main class="container mt-4">
+        <h2 class="mb-4">🛒 Tu Carrito</h2>
+        
+        <div th:if="${carritoItems == null or carritoItems.empty}" class="alert alert-info">
+            Tu carrito está vacío. <a th:href="@{/producto/listado}">Ver productos</a>
+        </div>
+        
+        <table th:unless="${carritoItems == null or carritoItems.empty}" class="table">
+            <!-- Contenido del carrito aquí -->
+        </table>
+    </main>
+    
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

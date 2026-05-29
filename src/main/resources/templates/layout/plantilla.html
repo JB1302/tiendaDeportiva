@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <!-- Elementos mejorados -->
+=======
+>>>>>>> master
 <html xmlns ="http://www.w3.org/1999/xhtml"
       xlmns:th="http://www.thymeleaf.org"
       xlmns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
@@ -30,6 +33,20 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/producto/listado">Producto<span class="sr-only">(current)</span></a>
                         </li>
+<<<<<<< HEAD
+=======
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/producto/carrito">
+                                <i class="fas fa-shopping-cart"></i> Carrito
+                                <span class="badge bg-danger" 
+                                      th:text="${   session.carritoItems != null ? session.carritoItems.size() : 0}">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+>>>>>>> master
 
                 </div>
             </nav>
